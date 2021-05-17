@@ -5,11 +5,11 @@ const ishAuthorized = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-      // Get all projects and JOIN with user data
+      // Get all blogPosts
       const blogPostData = await BlogPost.findAll();
   
       // Serialize data so the template can read it
-      const blogPostss = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
+      const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
   
       // Pass serialized data and session flag into template
       res.render('homepage', { 
@@ -22,9 +22,8 @@ router.get('/', async (req, res) => {
   });
 
 router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
-    //   res.redirect('/');
+      res.redirect('/');
       return;
     }
   
