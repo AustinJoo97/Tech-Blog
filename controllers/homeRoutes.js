@@ -6,7 +6,14 @@ const ishAuthorized = require('../utils/auth');
 router.get('/', async (req, res) => {
     try {
       // Get all blogPosts
-      const blogPostData = await BlogPost.findAll();
+      const blogPostData = await BlogPost.findAll({
+        include: [
+            {
+                model: User,
+                attributes: ['name'],
+            },
+        ]
+      });
   
       // Serialize data so the template can read it
       const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
