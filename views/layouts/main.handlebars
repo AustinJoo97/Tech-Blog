@@ -16,6 +16,7 @@
         <a href="/">Tech Blog!</a>
       </h1>
       <nav>
+        <button class="no-button" id="homeButton" href="/">Home</button>
         {{#if logged_in}}
         <button class="no-button" id="logout">logout</button>
         {{else}}
@@ -33,6 +34,7 @@
 
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
+  <script src="/js/home.js"></script>
   {{/if}}
 </body>
 
