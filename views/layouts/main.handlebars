@@ -18,9 +18,10 @@
       <nav>
         <a href="/"><button class="no-button" id="homeButton">Home</button></a>
         {{#if logged_in}}
+        <a href="/api/myDashboard"><button class="no-button" id="login">My Dashboard</button></a>
         <button class="no-button" id="logout">Logout</button>
         {{else}}
-        <a href="/login">Login</a>
+        <a href="/login"><button class="no-button" id="login">Login</button></a>
         {{/if}}
       </nav>
     </header>

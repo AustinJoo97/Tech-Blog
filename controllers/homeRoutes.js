@@ -5,35 +5,29 @@ const ishAuthorized = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        if (req.session.logged_in){
-            // Get all blogPosts
-            const blogPostData = await BlogPost.findAll({
-              include: [
-                  {
-                      model: User,
-                      attributes: ['name'],
-                  },
-              ]
-            });
+        const blogPostData = await BlogPost.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['name'],
+                },
+            ]
+        });
+
+        // LEFT OUTER JOIN `user` AS `user` ON `blog_post`where `user_id` = `user`.`id
+    
+        const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
         
-            // Serialize data so the template can read it
-            const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
-            
-            blogPosts.forEach(async (post) => {
-                let posterData = await User.findByPk(post.user_id);
-                poster = posterData.get({plain:true});
-                post.user = poster.name;
-                // console.log(blogPost)
-            })
-        
-            // Pass serialized data and session flag into template
-            res.render('homepage', { 
-              blogPosts, 
-              logged_in: req.session.logged_in 
-            });
-        } else {
-            res.render('login')
-        }
+        blogPosts.forEach(async (post) => {
+            let posterData = await User.findByPk(post.user_id);
+            poster = posterData.get({plain:true});
+            post.user = poster.name;
+        })
+    
+        res.render('homepage', { 
+            blogPosts, 
+            logged_in: req.session.logged_in 
+        });
     } catch (err) {
       res.status(500).json(err);
     }
