@@ -1,9 +1,19 @@
-<!-- Loop over each object in the projects array -->
-{{#each blogPosts as |blogPost| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>{{blogPost.post_text}}</h2>
-    <p>Posted by {{blogPost.user}} on {{format_date blogPost.date_created}}</p>
+<div style="float: left">
+  {{#each blogPosts as |blogPost| }}
+  <div class="row mb-4 project">
+    <div class="col-md-5">
+      <h2>{{blogPost.post_text}}</h2>
+      <p>Posted by {{blogPost.user}} on {{format_date blogPost.date_created}}</p>
+    </div>
   </div>
+  {{/each}}
 </div>
-{{/each}}
+
+<div style="float: right;">
+  {{#if logged_in}}
+  <h1>WELCOME</h1>
+  {{/if}}
+  {{#unless logged_in}}
+  <h1>PLEASE LOG IN TO POST</h1>
+  {{/unless}}
+</div>
