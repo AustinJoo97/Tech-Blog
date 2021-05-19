@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
                     model: User,
                     attributes: ['name'],
                 },
-            ]
+            ],
+            order: [['date_created', 'DESC']]
         });
 
         // LEFT OUTER JOIN `user` AS `user` ON `blog_post`where `user_id` = `user`.`id
