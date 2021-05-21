@@ -1,19 +1,34 @@
-<div style="float: left">
-  {{#each blogPosts as |blogPost| }}
-  <div class="row mb-4 project">
-    <div class="col-md-5">
-      <h2>{{blogPost.post_text}}</h2>
-      <p>Posted by {{blogPost.user}} on {{format_date blogPost.date_created}}</p>
+<div class="row">
+  <div class="col-md-8" style="overflow: scroll;">
+    {{#each blogPosts as |blogPost| }}
+    <div class="row mb-4 project">
+      <div class="col-md-5">
+        <h2>{{blogPost.post_text}}</h2>
+        <p>Posted by {{blogPost.user}} on {{format_date blogPost.date_created}}</p>
+      </div>
     </div>
+    {{/each}}
   </div>
-  {{/each}}
-</div>
 
-<div style="float: right;">
-  {{#if logged_in}}
-  <h1>WELCOME</h1>
-  {{/if}}
-  {{#unless logged_in}}
-  <h1>PLEASE LOG IN TO POST</h1>
-  {{/unless}}
+  <div class="col-md-4">
+    {{#if logged_in}}
+    <h1>WELCOME</h1>
+    {{else}}
+    <h2>Login</h2>
+    <form class="form login-form">
+      <div class="form-group">
+        <label for="email-login">email:</label>
+        <input class="form-input" type="text" id="email-login" />
+      </div>
+      <div class="form-group">
+        <label for="password-login">password:</label>
+        <input class="form-input" type="password" id="password-login" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">login</button>
+      </div>
+    </form>
+    {{/if}}
+  </div>
 </div>
+<script src="/js/login.js"></script>
