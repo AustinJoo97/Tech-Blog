@@ -15,7 +15,8 @@ router.get('/', async (req, res) => {
         
             res.render('myDashboard', {
                 allMyPosts,
-                logged_in: req.session.logged_in 
+                logged_in: req.session.logged_in,
+                user_id: req.session.user_id
             })
         } else {
             res.redirect('/login');
@@ -28,7 +29,7 @@ router.get('/', async (req, res) => {
 router.post('/newPost', async (req, res) => {
     try{
         req.body.user_id = req.session.user_id;
-        
+
         const myBlogPostData = await BlogPost.create(req.body);
 
         console.log(myBlogPostData);

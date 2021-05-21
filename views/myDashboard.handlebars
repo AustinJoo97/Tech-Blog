@@ -1,8 +1,10 @@
-{{#each myBlogPosts as |myBlogPost|}}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>{{myBlogPost.post_text}}</h2>
-    <p>Posted on {{format_date blogPost.date_created}}</p>
+<div>
+  {{#each allMyPosts as |myPost|}}
+  <div class="row mb-4 project" id={{myPost.id}}>
+    <div class="col-md-5">
+      <h2>{{myPost.post_text}}</h2>
+      <p>Posted on {{format_date blogPost.date_created}}</p>
+    </div>
   </div>
+  {{/each}}
 </div>
-{{/each}}

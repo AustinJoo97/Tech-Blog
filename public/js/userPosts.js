@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 const newPostHandler = async (event) => {
     event.preventDefault();
 
@@ -24,6 +26,15 @@ const newPostHandler = async (event) => {
     } 
 };
 
+const getAllOfMyPosts = async () => {
+    const allMyPostsData = await fetch('api/myDashboard');
+
+    if(allMyPostsData.ok){
+        return;
+    } else {
+        alert(response.statusText)
+    }
+}
 // Run through DB
 
 // Find all posts submitted by logged in user
@@ -31,3 +42,4 @@ const newPostHandler = async (event) => {
 // Render to the DOM
 
 document.querySelector('.newPost').addEventListener('submit', newPostHandler)
+document.querySelector('#myDashboard').addEventListener('onclick', getAllOfMyPosts)
