@@ -5,16 +5,16 @@ const { BlogPost } = require('../../models');
 router.get('/', async (req, res) => {
     try{
         if(req.session.user_id){
-            const myBlogPostsData = await BlogPost.findAll({
+            const allMyPostsData = await BlogPost.findAll({
                 where: {
                     user_id: req.session.user_id
                 }
             })
         
-            const myBlogPosts = myBlogPostsData.map((post) => post.get({plain:true}));
+            const allMyPosts = allMyPostsData.map((post) => post.get({plain:true}));
         
             res.render('myDashboard', {
-                myBlogPosts,
+                allMyPosts,
                 logged_in: req.session.logged_in 
             })
         } else {
@@ -25,10 +25,25 @@ router.get('/', async (req, res) => {
     }
 });
 
-// router.post('/myDashboard', (req, res) => {
-//     try{}
-//     catch(err){}
-// })
+router.post('/newPost', async (req, res) => {
+    try{
+        req.body.user_id = req.session.user_id;
+        
+        const myBlogPostData = await BlogPost.create(req.body);
+
+        console.log(myBlogPostData);
+        req.session.save(() => {
+            req.session.user_id = myBlogPostData.user_id;
+            req.session.logged_in = true;
+
+                res.status(200).json(myBlogPostData);
+        })
+    }
+    catch(err){
+        res.status(400).json(err);
+    }
+})
+
 
 // etc
 
