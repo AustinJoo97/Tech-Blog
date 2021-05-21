@@ -30,8 +30,9 @@
   <div class="col-md-6" style="overflow: scroll; height: 600px;">
     {{#each blogPosts as |blogPost| }}
     <div class="row mb-4">
-      <div class="col-md-10">
-        <h2>{{blogPost.post_text}}</h2>
+      <div class="col-md-10" id={{blogPost.id}}>
+        <h1>{{blogPost.post_title}}</h1>
+        <h4>{{blogPost.post_text}}</h4>
         <p>Posted by {{blogPost.user}} on {{format_date blogPost.date_created}}</p>
       </div>
     </div>
