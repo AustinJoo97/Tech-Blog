@@ -1,10 +1,22 @@
-<div>
-  {{#each allMyPosts as |myPost|}}
-  <div class="row mb-4 project" id={{myPost.id}}>
-    <div class="col-md-5">
-      <h2>{{myPost.post_text}}</h2>
-      <p>Posted on {{format_date myPost.date_created}}</p>
+<div class="row">
+  <div class="col-md-6" style="overflow: scroll; height: 600px;">
+    {{#each allMyPosts as |myPost|}}
+    <div class="row mb-4 project" id={{myPost.id}}>
+      <div class="col-md-10">
+        <h2>{{myPost.post_text}}</h2>
+        <p>Posted on {{format_date myPost.date_created}}</p>
+      </div>
     </div>
+    {{/each}}
   </div>
-  {{/each}}
+  <div class="col-md-6">
+    <form class="form newPost">
+        <div class="form-group">
+          <input class="form-input" type="blogPost" style="height: 250px;" id="blogPost" />
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Post</button>
+        </div>
+    </form>
+  </div>
 </div>

@@ -1,9 +1,9 @@
-const { response } = require("express");
-
 const newPostHandler = async (event) => {
     event.preventDefault();
 
     const newPost = document.querySelector('#blogPost').value.trim();
+
+    console.log(newPost);
 
     if(newPost.length === 0 || !newPost){
         return;
@@ -19,7 +19,8 @@ const newPostHandler = async (event) => {
       });
 
       if (response.ok) {
-        document.location.replace('/');
+        getAllOfMyPosts();
+        document.location.reload();
       } else {
         alert(response.statusText);
       }
@@ -35,11 +36,6 @@ const getAllOfMyPosts = async () => {
         alert(response.statusText)
     }
 }
-// Run through DB
-
-// Find all posts submitted by logged in user
-
-// Render to the DOM
 
 document.querySelector('.newPost').addEventListener('submit', newPostHandler)
 document.querySelector('#myDashboard').addEventListener('onclick', getAllOfMyPosts)

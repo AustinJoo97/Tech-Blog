@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
             const allMyPostsData = await BlogPost.findAll({
                 where: {
                     user_id: req.session.user_id
-                }
+                },
+                order: [['date_created', 'DESC']]
             })
         
             const allMyPosts = allMyPostsData.map((post) => post.get({plain:true}));
@@ -32,12 +33,11 @@ router.post('/newPost', async (req, res) => {
 
         const myBlogPostData = await BlogPost.create(req.body);
 
-        console.log(myBlogPostData);
         req.session.save(() => {
             req.session.user_id = myBlogPostData.user_id;
             req.session.logged_in = true;
 
-                res.status(200).json(myBlogPostData);
+            res.status(200).json(myBlogPostData);
         })
     }
     catch(err){
