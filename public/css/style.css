@@ -1,0 +1,16 @@
+.blogPostSection{
+    overflow: scroll; 
+    height: 600px;
+}
+
+.blogPostSection :hover{
+    cursor: pointer;
+}
+
+.mainBlogPost{
+    border: 1px dashed cyan
+}
+
+.dashBlogPost{
+    border: 1px dashed red
+}

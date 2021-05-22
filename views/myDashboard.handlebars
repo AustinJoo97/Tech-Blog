@@ -11,10 +11,10 @@
         </div>
     </form>
   </div>
-  <div class="col-md-6" style="overflow: scroll; height: 600px;">
+  <div class="col-md-6 blogPostSection">
     {{#each allMyPosts as |myPost|}}
     {{!-- <a> --}}
-      <div class="row mb-4 blogPost" style="border: 1px dashed red" id={{myPost.id}}>
+      <div class="row mb-4 dashBlogPost" id={{myPost.id}}>
         <div class="col-md-10">
           <h1>{{myPost.post_title}}</h1>
           <h5>{{myPost.post_text}}</h5>

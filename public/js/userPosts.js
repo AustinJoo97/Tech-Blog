@@ -37,7 +37,7 @@ const getAllOfMyPosts = async () => {
     }
 }
 
-const renderComments = async () => {
+const renderComments = () => {
   console.log('RENDER COMMENTS HAS BEEN TRIGGERED')
   console.log(this.id);
 }
