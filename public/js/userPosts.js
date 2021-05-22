@@ -44,4 +44,5 @@ const renderComments = () => {
 
 document.querySelector('.newPost').addEventListener('submit', newPostHandler)
 document.querySelector('#myDashboard').addEventListener('onclick', getAllOfMyPosts)
-document.querySelector('.blogPost').addEventListener('onclick', renderComments)
+document.querySelector('.mainBlogPost').addEventListener('onclick', renderComments)
+document.querySelector('.dashBlogPost').addEventListener('onclick', renderComments)

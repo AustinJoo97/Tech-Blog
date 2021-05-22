@@ -46,6 +46,13 @@ router.post('/newPost', async (req, res) => {
 })
 
 
-// etc
+router.get('/viewPost', async (req, res) => {
+    try{
+
+    }
+    catch(err){
+        res.status(400).json(err);
+    }
+})
 
 module.exports = router;
