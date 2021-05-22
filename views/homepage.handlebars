@@ -4,7 +4,8 @@
     <h1>Submit a New Post</h1>
     <form class="form newPost">
       <div class="form-group">
-        <input class="form-input" type="blogPost" style="height: 250px;" id="blogPost" />
+        <input class="form-input" style="height: 125x;" id="blogPostTitle" placeholder="Post Title"/>
+        <input class="form-input" style="height: 125px;" id="blogPostText" placeholder="Post Text"/>
       </div>
       <div class="form-group">
         <button class="btn btn-primary" type="submit">Post</button>
@@ -29,10 +30,10 @@
   </div>
   <div class="col-md-6" style="overflow: scroll; height: 600px;">
     {{#each blogPosts as |blogPost| }}
-    <div class="row mb-4">
-      <div class="col-md-10" id={{blogPost.id}}>
+    <div class="row mb-4" style="border: 1px dashed cyan" id={{blogPost.id}}>
+      <div class="col-md-10">
         <h1>{{blogPost.post_title}}</h1>
-        <h4>{{blogPost.post_text}}</h4>
+        <h5>{{blogPost.post_text}}</h5>
         <p>Posted by {{blogPost.user}} on {{format_date blogPost.date_created}}</p>
       </div>
     </div>

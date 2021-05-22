@@ -12,9 +12,10 @@
   </div>
   <div class="col-md-6" style="overflow: scroll; height: 600px;">
     {{#each allMyPosts as |myPost|}}
-    <div class="row mb-4 project" id={{myPost.id}}>
+    <div class="row mb-4 project" style="border: 1px dashed red" id={{myPost.id}}>
       <div class="col-md-10">
-        <h2>{{myPost.post_text}}</h2>
+        <h1>{{myPost.post_title}}</h1>
+        <h5>{{myPost.post_text}}</h5>
         <p>Posted on {{format_date myPost.date_created}}</p>
       </div>
     </div>

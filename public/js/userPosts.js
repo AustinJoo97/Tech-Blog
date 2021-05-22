@@ -1,19 +1,19 @@
 const newPostHandler = async (event) => {
     event.preventDefault();
 
-    const newPost = document.querySelector('#blogPost').value.trim();
+    const newPostTitle = document.querySelector('#blogPostTitle').value.trim();
+    const newPostText = document.querySelector('#blogPostText').value.trim();
 
-    console.log(newPost);
-
-    if(newPost.length === 0 || !newPost){
+    if(newPostTitle.length === 0 || newPostText.length === 0 || !newPostTitle || !newPostText){
         return;
     }
 
-    if (newPost) {
+    if (newPostTitle && newPostText) {
       const response = await fetch('/api/myDashboard/newPost', {
         method: 'POST',
         body: JSON.stringify({ 
-            post_text: newPost
+            post_title: newPostTitle,
+            post_text: newPostText,
         }),
         headers: { 'Content-Type': 'application/json' },
       });
