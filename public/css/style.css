@@ -14,3 +14,11 @@
 .dashBlogPost{
     border: 1px dashed red
 }
+
+#blogPostTitle{
+    height: 50px
+}
+
+#blogPostText{
+    height: 200px
+}
