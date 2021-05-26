@@ -23,6 +23,11 @@
     width: 600px;
 }
 
+.deleteButton{
+    margin-left: 535px;
+    background-color: red
+}
+
 #blogPostTitle{
     height: 50px
 }

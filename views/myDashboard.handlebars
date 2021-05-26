@@ -14,6 +14,7 @@
   <div class="col-md-6 blogPostSection">
     {{#each allMyPosts as |myPost|}}
     <div class="row mb-4 dashBlogPost">
+      <button class='deleteButton' index={{myPost.id}}>Delete</button>
       <a style="text-decoration: none; color: black; width: 600px" href='/api/myDashboard/viewPost/{{myPost.id}}'>
         <div index={{myPost.id}}>
             <div class="col-md-10">
@@ -23,7 +24,6 @@
             </div>
         </div>
       </a>
-      <button class='deleteButton' index={{myPost.id}}>Delete</button>
     </div>
     {{/each}}
   </div>
