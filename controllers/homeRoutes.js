@@ -1,38 +1,32 @@
 const router = require('express').Router();
 const { User, BlogPost } = require('../models');
-const ishAuthorized = require('../utils/auth');
+const isAuthorized = require('../utils/auth');
 
 
-router.get('/', async (req, res) => {
+router.get('/', isAuthorized, async (req, res) => {
     try {
-        // if(req.session.logged_in){
-            const blogPostData = await BlogPost.findAll({
-                include: [
-                    {
-                        model: User,
-                        attributes: ['name'],
-                    },
-                ],
-                order: [['date_created', 'DESC']]
-            });
+        const blogPostData = await BlogPost.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['name'],
+                },
+            ],
+            order: [['date_created', 'DESC']]
+        });
     
-            // LEFT OUTER JOIN `user` AS `user` ON `blog_post`where `user_id` = `user`.`id
+        const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
         
-            const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
-            
-            blogPosts.forEach(async (post) => {
-                let posterData = await User.findByPk(post.user_id);
-                poster = posterData.get({plain:true});
-                post.user = poster.name;
-            })
-        
-            res.render('homepage', { 
-                blogPosts, 
-                logged_in: req.session.logged_in 
-            });
-        // } else {
-            // res.render('login');
-        // }
+        blogPosts.forEach(async (post) => {
+            let posterData = await User.findByPk(post.user_id);
+            poster = posterData.get({plain:true});
+            post.user = poster.name;
+        })
+    
+        res.render('homepage', { 
+            blogPosts, 
+            logged_in: req.session.logged_in 
+        });
     } catch (err) {
       res.status(500).json(err);
     }

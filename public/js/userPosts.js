@@ -37,12 +37,28 @@ const getAllOfMyPosts = async () => {
     }
 }
 
-const renderComments = () => {
-  console.log('RENDER COMMENTS HAS BEEN TRIGGERED')
-  console.log(this.id);
+const renderComments = async (event) => {const divElement = event.target.closest('div.mainBlogPost');
+  const comments = await fetch('/api/myDashboard/viewPost', {
+    method: 'POST',
+    body: JSON.stringify({ 
+        id: divElement.getAttribute('index'),
+    }),
+    headers: { 'Content-Type': 'application/json' },
+  });
+  
+
+  if(comments.ok){
+    return;
+  } else {
+    alert(response.statusText);
+  }
 }
 
 document.querySelector('.newPost').addEventListener('submit', newPostHandler)
 document.querySelector('#myDashboard').addEventListener('onclick', getAllOfMyPosts)
-document.querySelector('.mainBlogPost').addEventListener('onclick', renderComments)
-document.querySelector('.dashBlogPost').addEventListener('onclick', renderComments)
+document.querySelectorAll('.mainBlogPost').forEach((blogPost) => {
+    blogPost.addEventListener('click', renderComments);
+})
+document.querySelectorAll('.dashBlogPost').forEach((blogPost) => {
+    blogPost.addEventListener('click', renderComments)
+})

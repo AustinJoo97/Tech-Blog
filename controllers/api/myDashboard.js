@@ -46,9 +46,10 @@ router.post('/newPost', async (req, res) => {
 })
 
 
-router.get('/viewPost', async (req, res) => {
+router.post('/viewPost', async (req, res) => {
     try{
-
+        console.log('TRIGGERED VIEW POST')
+        console.log(req.body);
     }
     catch(err){
         res.status(400).json(err);
