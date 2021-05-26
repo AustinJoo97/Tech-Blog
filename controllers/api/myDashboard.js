@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { BlogPost } = require('../../models');
+const { User, BlogPost, Comment } = require('../../models');
 
 
 router.get('/', async (req, res) => {
@@ -48,8 +48,45 @@ router.post('/newPost', async (req, res) => {
 
 router.post('/viewPost', async (req, res) => {
     try{
-        console.log('TRIGGERED VIEW POST')
-        console.log(req.body);
+        const postData = await BlogPost.findOne({
+            where: {
+                id: req.body.id
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['name'],
+                }
+            ]
+        });
+
+        
+        const commentsData = await Comment.findAll({
+            where: {
+                post_id: req.body.id
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['name'],
+                }
+            ]
+        });
+
+        const post = postData.get({plain: true});
+        const comments = [];
+
+        commentsData.forEach((comment) => {
+            comments.push(comment.get({plain: true}));
+        })
+
+
+        res.render('postComments', {
+            post,
+            comments,
+            logged_in: req.session.logged_in,
+            user_id: req.session.user_id
+        })
     }
     catch(err){
         res.status(400).json(err);

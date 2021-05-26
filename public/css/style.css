@@ -3,16 +3,19 @@
     height: 600px;
 }
 
-.blogPostSection :hover{
+.mainBlogPost:hover,
+.dashBlogPost:hover {
     cursor: pointer;
 }
 
 .mainBlogPost{
-    border: 1px dashed cyan
+    border: 1px dashed cyan;
+    width: 600px;
 }
 
 .dashBlogPost{
-    border: 1px dashed red
+    border: 1px dashed red;
+    width: 600px;
 }
 
 #blogPostTitle{
