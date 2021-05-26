@@ -37,31 +37,5 @@ const getAllOfMyPosts = async () => {
     }
 }
 
-// const renderComments = async (event) => {
-//   // const divElement = event.target.closest('div.mainBlogPost');
-//   // const comments = await fetch('/api/myDashboard/viewPost/:id', {
-//   //   method: 'GET',
-//   //   body: JSON.stringify({ 
-//   //       id: divElement.getAttribute('index'),
-//   //   }),
-//   //   headers: { 'Content-Type': 'application/json' },
-//   // });
-
-//   // const comments = await fetch('/api/myDashboard/viewPost/:id')
-  
-
-//   if(comments.ok){
-//     document.location.reload();
-//   } else {
-//     alert(response.statusText);
-//   }
-// }
-
 document.querySelector('.newPost').addEventListener('submit', newPostHandler)
 document.querySelector('#myDashboard').addEventListener('onclick', getAllOfMyPosts)
-// document.querySelectorAll('.mainBlogPost').forEach((blogPost) => {
-//     blogPost.addEventListener('click', renderComments);
-// })
-// document.querySelectorAll('.dashBlogPost').forEach((blogPost) => {
-//     blogPost.addEventListener('click', renderComments)
-// })

@@ -15,14 +15,15 @@
         <div>
             {{#if logged_in}}
             <form id='addNewComment'>
-                <input  class='commentInput' id="comment-input">
+                <input  class='commentInput' data-post_id={{post.id}} id="comment-input">
                 <button id="postCommentButton">Post</button>
             </form>
             {{else}}
             <div>
-                <h1>Please login to comment!</h1>
+                <h1 style='color: purple'>Please login to comment!</h1>
             </div>
             {{/if}}
         </div>
     </div>
 </div>
+<script src='/js/comment.js'></script>

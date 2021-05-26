@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const { User, BlogPost } = require('../models');
-const isAuthorized = require('../utils/auth');
 
 
-router.get('/', isAuthorized, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const blogPostData = await BlogPost.findAll({
             include: [

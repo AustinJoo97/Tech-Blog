@@ -33,12 +33,7 @@ router.post('/newPost', async (req, res) => {
 
         const myBlogPostData = await BlogPost.create(req.body);
 
-        req.session.save(() => {
-            req.session.user_id = myBlogPostData.user_id;
-            req.session.logged_in = true;
-
-            res.status(200).json(myBlogPostData);
-        })
+        res.status(200).json(myBlogPostData);
     }
     catch(err){
         res.status(400).json(err);
@@ -80,9 +75,6 @@ router.get('/viewPost/:id', async (req, res) => {
             comments.push(comment.get({plain: true}));
         })
 
-        console.log(post);
-        console.log(comments);
-
         const testObj = {
             post,
             comments,
@@ -92,13 +84,24 @@ router.get('/viewPost/:id', async (req, res) => {
 
         res.render('postComments', {
             post,
-            // post: {id:.., text..}
             comments,
             logged_in: req.session.logged_in,
             user_id: req.session.user_id
         })
     }
     catch(err){
+        res.status(400).json(err);
+    }
+})
+
+router.post('/comment', async (req, res) => {
+    try{
+        req.body.user_id = req.session.user_id;
+
+        const newCommentData = Comment.create(req.body);
+
+        res.status(200).json(newCommentData);
+    } catch(err){
         res.status(400).json(err);
     }
 })
