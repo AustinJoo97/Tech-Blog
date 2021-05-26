@@ -37,5 +37,21 @@ const getAllOfMyPosts = async () => {
     }
 }
 
+const deletePost = async (event) => {
+  const post_id = event.target.getAttribute('index')
+
+  const postToDelete = await fetch(`/api/myDashboard/delete/${post_id}`, {
+    method: 'DELETE',
+  })
+
+  if(postToDelete.ok){
+    document.location.reload();
+  } else {
+    alert('Failed to delete post!')
+  }
+}
+
+
 document.querySelector('.newPost').addEventListener('submit', newPostHandler)
-document.querySelector('#myDashboard').addEventListener('onclick', getAllOfMyPosts)
+document.querySelector('#myDashboard').addEventListener('click', getAllOfMyPosts)
+document.querySelector('.deleteButton').addEventListener('click', deletePost);

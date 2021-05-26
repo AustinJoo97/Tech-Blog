@@ -13,15 +13,18 @@
   </div>
   <div class="col-md-6 blogPostSection">
     {{#each allMyPosts as |myPost|}}
-      <div class="row mb-4 dashBlogPost" id={{myPost.id}}>
-        <a style="text-decoration: none; color: black; width: 600px">
-          <div class="col-md-10">
-            <h1>{{myPost.post_title}}</h1>
-            <h5>{{myPost.post_text}}</h5>
-            <p>Posted on {{format_date myPost.date_created}}</p>
-          </div>
-        </a>
-      </div>
+    <div class="row mb-4 dashBlogPost">
+      <a style="text-decoration: none; color: black; width: 600px" href='/api/myDashboard/viewPost/{{myPost.id}}'>
+        <div index={{myPost.id}}>
+            <div class="col-md-10">
+              <h1>{{myPost.post_title}}</h1>
+              <h5>{{myPost.post_text}}</h5>
+              <p>Posted by {{myPost.user}} on {{format_date myPost.date_created}}</p>
+            </div>
+        </div>
+      </a>
+      <button class='deleteButton' index={{myPost.id}}>Delete</button>
+    </div>
     {{/each}}
   </div>
 </div>

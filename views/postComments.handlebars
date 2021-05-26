@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-6">
         {{#each comments as |comment|}}
-        <div class="comment" id={{comment.id}}>
+        <div class="comment">
             <h5>{{comment.comment_text}}</h5>
             <h6>Posted by {{comment.user.name}} on {{format_date comment.date_created}}</h6>
         </div>
