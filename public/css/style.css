@@ -18,10 +18,24 @@
     width: 600px;
 }
 
+.comment{
+    border: 1px dashed green;
+    width: 600px;
+}
+
 #blogPostTitle{
     height: 50px
 }
 
 #blogPostText{
     height: 200px
+}
+
+#singlePostSection{
+    text-align: center;
+    padding-top: 15%;
+}
+
+#comment-input{
+    width: 600px;
 }

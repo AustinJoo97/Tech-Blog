@@ -46,11 +46,11 @@ router.post('/newPost', async (req, res) => {
 })
 
 
-router.post('/viewPost', async (req, res) => {
+router.get('/viewPost/:id', async (req, res) => {
     try{
         const postData = await BlogPost.findOne({
             where: {
-                id: req.body.id
+                id: req.params.id
             },
             include: [
                 {
@@ -63,7 +63,7 @@ router.post('/viewPost', async (req, res) => {
         
         const commentsData = await Comment.findAll({
             where: {
-                post_id: req.body.id
+                post_id: req.params.id
             },
             include: [
                 {
@@ -80,9 +80,19 @@ router.post('/viewPost', async (req, res) => {
             comments.push(comment.get({plain: true}));
         })
 
+        console.log(post);
+        console.log(comments);
+
+        const testObj = {
+            post,
+            comments,
+            logged_in: req.session.logged_in,
+            user_id: req.session.user_id
+        }
 
         res.render('postComments', {
             post,
+            // post: {id:.., text..}
             comments,
             logged_in: req.session.logged_in,
             user_id: req.session.user_id

@@ -30,15 +30,15 @@
   </div>
   <div class="col-md-6 blogPostSection">
     {{#each blogPosts as |blogPost| }}
-      <div class="row mb-4 mainBlogPost" index={{blogPost.id}}>
-        <a style="text-decoration: none; color: black; width: 600px">
-          <div class="col-md-10">
-            <h1>{{blogPost.post_title}}</h1>
-            <h5>{{blogPost.post_text}}</h5>
-            <p>Posted by {{blogPost.user}} on {{format_date blogPost.date_created}}</p>
-          </div>
-        </a>
-      </div>
+      <a style="text-decoration: none; color: black; width: 600px" href='/api/myDashboard/viewPost/{{blogPost.id}}'>
+        <div class="row mb-4 mainBlogPost" index={{blogPost.id}}>
+            <div class="col-md-10">
+              <h1>{{blogPost.post_title}}</h1>
+              <h5>{{blogPost.post_text}}</h5>
+              <p>Posted by {{blogPost.user}} on {{format_date blogPost.date_created}}</p>
+            </div>
+        </div>
+      </a>
     {{/each}}
   </div>
 </div>
