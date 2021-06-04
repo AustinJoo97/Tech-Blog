@@ -36,9 +36,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
       if (response.ok) {
         document.location.replace('/');
-      } else {
-        alert(response.statusText);
-      }
+      } 
     }
   };
     
