@@ -3,7 +3,7 @@ CMS-style blog app utilizing the MVC paradigm
 
 ## Deployed Site Link 
 
-N/a
+https://austins-first-tech-blog.herokuapp.com/
 
 ## Table of Contents
 
